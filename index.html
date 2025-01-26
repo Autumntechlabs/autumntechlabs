@@ -3,41 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autumn</title>
+    <title>Autumn - Home</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
     <style>
-        /* Add any custom CSS here */
+        .btn-primary {
+            @apply bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition-all;
+        }
     </style>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal" x-data="{ openPanel: false, showLogin: false }">
+
+    <!-- Sliding Panel -->
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20" x-show="openPanel" @click="openPanel = false"></div>
+    <aside class="fixed left-0 top-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 z-30" :class="openPanel ? 'translate-x-0' : '-translate-x-full'">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4">Menu</h2>
+            <ul>
+                <li><a href="index.html" class="block py-2 text-gray-600 hover:text-blue-500">Home</a></li>
+                <li><a href="products.html" class="block py-2 text-gray-600 hover:text-blue-500">Products</a></li>
+                <li><a href="services.html" class="block py-2 text-gray-600 hover:text-blue-500">Services</a></li>
+                <li><a href="about.html" class="block py-2 text-gray-600 hover:text-blue-500">About Us</a></li>
+                <li><a href="contact.html" class="block py-2 text-gray-600 hover:text-blue-500">Contact</a></li>
+            </ul>
+        </div>
+    </aside>
 
     <!-- Navbar -->
-    <header class="bg-white shadow">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">Autmn</div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="index.html" class="text-gray-600 hover:text-blue-500">Home</a></li>
-                    <li><a href="products.html" class="text-gray-600 hover:text-blue-500">Products</a></li>
-                    <li><a href="services.html" class="text-gray-600 hover:text-blue-500">Services</a></li>
-                    <li><a href="about.html" class="text-gray-600 hover:text-blue-500">About Us</a></li>
-                    <li><a href="contact.html" class="text-gray-600 hover:text-blue-500">Contact</a></li>
-                </ul>
-            </nav>
+    <header class="bg-white shadow fixed w-full z-10 flex justify-between items-center p-4">
+        <div class="flex items-center space-x-4">
+            <button class="text-gray-600" @click="openPanel = true">☰</button>
+            <div class="text-2xl font-bold text-gray-800">Autumn</div>
         </div>
+        <button class="btn-primary" @click="showLogin = true">Login</button>
     </header>
 
+    <!-- Login Modal -->
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-40" x-show="showLogin" @click.away="showLogin = false">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-2xl font-bold mb-4">User Login</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                    <input type="email" id="email" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Your Email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 font-bold mb-2">Password</label>
+                    <input type="password" id="password" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Your Password" required>
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" class="btn-primary">Login</button>
+                    <button type="button" class="text-gray-600" @click="showLogin = false">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="bg-blue-500 text-white py-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl font-bold mb-4">Welcome to Autumn</h1>
-            <p class="text-xl">Explore our cutting-edge robots, gadgets, and drones!</p>
-            <a href="products.html" class="mt-6 inline-block bg-white text-blue-500 px-6 py-3 rounded-full shadow hover:bg-gray-200">Shop Now</a>
+    <section class="bg-blue-500 text-white py-32 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-5xl font-bold mb-4">Welcome to Autumn</h1>
+            <p class="text-xl mb-6">Explore our cutting-edge safety solutions for women.</p>
+            <a href="products.html" class="btn-primary">Explore Products</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <footer class="bg-gray-800 text-white py-6 mt-12">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 Autumn. All rights reserved.</p>
         </div>
@@ -45,66 +77,3 @@
 
 </body>
 </html>
-
-<!-- PRODUCTS PAGE (products.html) -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Autmn</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-
-    <!-- Navbar -->
-    <header class="bg-white shadow">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">Autmn</div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="index.html" class="text-gray-600 hover:text-blue-500">Home</a></li>
-                    <li><a href="products.html" class="text-gray-600 hover:text-blue-500">Products</a></li>
-                    <li><a href="services.html" class="text-gray-600 hover:text-blue-500">Services</a></li>
-                    <li><a href="about.html" class="text-gray-600 hover:text-blue-500">About Us</a></li>
-                    <li><a href="contact.html" class="text-gray-600 hover:text-blue-500">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Products Section -->
-    <section class="py-20">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Our Products</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <img src="https://via.placeholder.com/150" alt="Product 1" class="w-full mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2">Robot A</h3>
-                    <p class="text-gray-600">High-performance robot for industrial automation.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <img src="https://via.placeholder.com/150" alt="Product 2" class="w-full mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2">Gadget B</h3>
-                    <p class="text-gray-600">Smart gadget to make your life easier.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <img src="https://via.placeholder.com/150" alt="Product 3" class="w-full mb-4 rounded">
-                    <h3 class="text-xl font-bold mb-2">Drone C</h3>
-                    <p class="text-gray-600">Advanced drone for aerial photography.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2025 Autmn. All rights reserved.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
-
-<!-- Additional pages (services.html, about.html, contact.html) follow the same structure -->
